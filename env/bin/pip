@@ -1,4 +1,4 @@
-#!/home/arizamoisesco/Documents/Study/AUTODIDACTA/automathic-logos/env/bin/python3
+#!/home/arizamoisesco/Documents/Study/AUTODIDACTA/automathic-logos/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
