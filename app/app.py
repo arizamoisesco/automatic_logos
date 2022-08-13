@@ -2,7 +2,8 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 
-UPLOAD_FOLDER = 'static/upload'
+UPLOAD_FOLDER = 'app/static/uploads'
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
@@ -10,12 +11,12 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
-    file = filename.split('.')
-    if file[1] in ALLOWED_EXTENSIONS:
-        return True
-    return False
-    #return '.' in filename and \
-    #       filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    #file = filename.split('.')
+    #if file[1] in ALLOWED_EXTENSIONS:
+    #    return True
+    #return False
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def upload_file():
@@ -38,7 +39,8 @@ def uploadfile():
         
         if file and allowed_file(filename):
             
-            file.save(filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            #file.save(f"{UPLOAD_FOLDER}/{filename}")
             #return redirect(url_for('download_file', name=filename))
             return 'Archivo subido exitosamente'
 
