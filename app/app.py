@@ -1,48 +1,46 @@
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, flash, redirect, url_for
 import os
+import secrets
 
 UPLOAD_FOLDER = 'app/static/uploads'
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+secret = secrets.token_urlsafe(32)
 
 app = Flask(__name__)
+app.secret_key = secret
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
-    #file = filename.split('.')
-    #if file[1] in ALLOWED_EXTENSIONS:
-    #    return True
-    #return False
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @app.route('/')
-def upload_file():
+def upload_form():
     return render_template('index.html')
 
 
-@app.route('/upload', methods = ['GET','POST'])
-def uploadfile():
+@app.route('/', methods = ['POST'])
+def upload_file():
     if request.method == 'POST':
-        if 'file' not in request.files:
+        if 'files' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        file = request.files['file']
-        filename = secure_filename(file.filename)
-        print(filename)
 
-        if file.filename == '':
-           flash('No ha seleccionado archivo')
-           return redirect(request.url) 
+        files = request.files.getlist('files')
         
-        if file and allowed_file(filename):
-            
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            #file.save(f"{UPLOAD_FOLDER}/{filename}")
-            #return redirect(url_for('download_file', name=filename))
-            return 'Archivo subido exitosamente'
+
+        for file in files:
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+
+        flash('Archivo(s) subido exitosamente')
+        return redirect(request.url)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
