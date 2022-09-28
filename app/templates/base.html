@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
 </head>
 <body>
     <p>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
-            <ul class=flashes>
+            <ul class="alert alert-success flashes">
             {% for message in messages %}
               <li>{{ message }}</li>
             {% endfor %}
@@ -19,7 +19,10 @@
           {% endif %}
         {% endwith %}
     </p>
-    {% block contenido %}
-    {% endblock %}
+    <main class="container d-flex w-100 h-100 p-3 mb-100 flex-column">
+      {% block contenido %}
+      {% endblock %}
+    </main>
+    
 </body>
 </html>

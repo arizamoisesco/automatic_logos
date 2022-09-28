@@ -1,14 +1,27 @@
 {% extends './base.html' %}
 
     {% block contenido %}
+      <h1 class="d-flex justify-content-center">Agregador de logos automático</h1>
       <form
         action="/"
         method="post"
         enctype="multipart/form-data"
+        class="d-flex justify-content-center flex-row bd-highlight ml-10 mb-3 mt-5 w-100 h-100"
       >
-        <input type="file" name="files" multiple="true" autocomplete="off" required />
-        <input type="submit" value = "Cargar imagenes" lass="btn btn-primary mb-3"/>
-        <input type="submit" value = "Procesar imagenes" lass="btn btn-primary mb-3"/>
+        <section class="col-md-5 col-lg-5">
+          <section class="mb-3">
+            <label for="" class="form-label">Agregue el logo de su empresa</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="files" multiple="true" autocomplete="off" />
+          </section>
+          <section class="mb-3">
+            <label for="" class="form-label">Agrega las imágenes deseadas</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="files" multiple="true" autocomplete="off" required />
+          </section>
+          
+          <input type="submit" value = "Cargar imagenes" class="btn btn-primary"/>
+        </section>
+        
+
       </form>
     {% endblock %}
 
