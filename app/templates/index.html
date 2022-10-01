@@ -10,15 +10,16 @@
       >
         <section class="col-md-5 col-lg-5">
           <section class="mb-3">
-            <label for="" class="form-label">Agregue el logo de su empresa</label>
-            <input class="form-control form-control-lg" id="formFileLg" type="file" name="files" multiple="true" autocomplete="off" />
+            <label for="" class="form-label">1. Agregue el logo de su empresa</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="logo" autocomplete="off" />
           </section>
           <section class="mb-3">
-            <label for="" class="form-label">Agrega las imágenes deseadas</label>
+            <label for="" class="form-label">2. Agrega las imágenes deseadas</label>
             <input class="form-control form-control-lg" id="formFileLg" type="file" name="files" multiple="true" autocomplete="off" required />
           </section>
           
           <input type="submit" value = "Cargar imagenes" class="btn btn-primary"/>
+          <a href="{{url_for('.download_file')}}" class="btn btn-primary">Download</a>
         </section>
         
 

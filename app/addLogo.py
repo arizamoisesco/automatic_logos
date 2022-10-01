@@ -17,7 +17,7 @@ class AddLogo():
     def logo_in_image(self, fondo, contador):
         fondo.paste(self.company_logo, (0,0), self.company_logo)
         fondo.save(f"app/static/downloads/img{contador}.png", "png")
-        fondo.show()
+        return print("Tarea completada")
         
     def rename_files(self, route):
         #1 introducir los arhivos dentro de una lista
