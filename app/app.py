@@ -86,12 +86,7 @@ def upload_file():
 
 @app.route('/download')
 def download_file():
-     #send_from_directory('/download', filename='img0.jpg',as_attachment=False, path='static/downloads')
-     #send_file('static/downloads/img0.png', as_attachment=True)
-     #print(send_from_directory(app.config['DOWNLOAD_FOLDER'], 'img0.png', as_attachment=True))
-     #return render_template('download.html')
-     #render_template('download.html')
-     #return send_from_directory(app.config['DOWNLOAD_FOLDER'], 'img0.png', as_attachment=True)
+
      return send_from_directory('static/', 'archive.zip', as_attachment=True)
      
 
@@ -100,7 +95,7 @@ def download_file():
 #####Procesamiento de imagen######
 def redimencionar_image(image):
     
-    redimencionada_img = image.resize((300, 300))
+    redimencionada_img = image.resize((200, 200))
     redimencionada_img.save("logo.png", "png")
     return redimencionada_img
 
