@@ -4,8 +4,6 @@ from flask import Flask, render_template, request, flash, redirect, send_from_di
 
 from PIL import Image
 
-from addLogo import AddLogo
-
 import os
 import secrets
 import zipfile
@@ -23,8 +21,6 @@ app.secret_key = secret
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['LOGO_COMPANY'] = LOGO_COMPANY
-
-add_logo = AddLogo()
 
 
 def allowed_file(filename):
